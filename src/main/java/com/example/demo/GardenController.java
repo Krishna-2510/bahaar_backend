@@ -20,7 +20,7 @@ import com.example.demo.service.GardenService;
 import com.example.demo.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000, https://your-netlify-site.netlify.app")
+@CrossOrigin(origins = {"http://localhost:3000", "https://bahaar-q5dy.onrender.com"})
 public class GardenController {
 
   @Autowired	

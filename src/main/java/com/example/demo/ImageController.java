@@ -14,7 +14,7 @@ import com.example.demo.entity.Image;
 import com.example.demo.service.ImageService;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://bahaar-q5dy.onrender.com"})
 public class ImageController {
     @Autowired
     private ImageService imageService;
