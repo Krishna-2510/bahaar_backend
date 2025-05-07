@@ -33,6 +33,7 @@ public class GardenServiceImpl implements GardenService{
 	@Override
 	public Garden addGarden(String name, MultipartFile image, String userId) {
 		String imageUrl = saveImage(image, name);
+		System.out.println("The generated imageUrl is " + imageUrl);
 		LocalDate currentDate = LocalDate.now();
 	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formattedDate = currentDate.format(formatter);
