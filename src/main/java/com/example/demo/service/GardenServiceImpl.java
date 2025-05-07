@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -26,6 +27,9 @@ public class GardenServiceImpl implements GardenService{
 	@Autowired
 	private ImageRepository imageRepo;
 
+	@Value("${app.base-url}")
+	private String baseUrl;
+
 	@Override
 	public Garden addGarden(String name, MultipartFile image, String userId) {
 		String imageUrl = saveImage(image, name);
@@ -41,11 +45,12 @@ public class GardenServiceImpl implements GardenService{
 		try {
 		      byte[] bytes = image.getBytes();
 		      String imageId = UUID.randomUUID().toString();
-		      String imageUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
-		        .path("/images/")
-		        .path(imageId)
-		        .toUriString();
-		      Image imageObject = new Image(imageId, bytes);
+//		      String imageUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+//		        .path("/images/")
+//		        .path(imageId)
+//		        .toUriString();
+			String imageUrl = baseUrl + "/images/" + imageId;
+			Image imageObject = new Image(imageId, bytes);
 		      imageObject.setName(name+"_Image");
 		      imageRepo.save(imageObject);
 		      return imageUrl;
